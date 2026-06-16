@@ -3,24 +3,26 @@ using namespace std;
 
 int main () {
 
-    //pointer to int is created, and pointing to some garbage address
-    //int *p = 0; 
+  //  pointer to int is created, and pointing to some garbage address
 
-    //cout << *p << endl;
+  // int *k = 0; 
+  // cout << *k << endl;
 
     /*
     int i = 5;
-
+ 
+ // Method 1
     int *q = &i;
     cout << q << endl;
     cout << *q << endl;
 
+ // Method 2
     int *p = 0;
     p = &i;
-
     cout << p << endl;
     cout << *p << endl;
     */
+   
 
    int num = 5;
    int a = num;
