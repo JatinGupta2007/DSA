@@ -23,4 +23,11 @@ int main(){
     cout<<"The value at address value_at(value_at(c)) is "<<**c<<endl; 
 
     return 0;
+
+
+    // TYPECASTING IN POINTERS
+    
+    // int i = 65; 
+    // int *p = &i;
+    // char *pc = (char*) p;
 }
