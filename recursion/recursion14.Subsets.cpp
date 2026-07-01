@@ -1,3 +1,6 @@
+#include<iostream>
+#include<vector>
+
 class Solution {
 private:
     void solve(vector<int> nums, vector<int> output, int index, vector<vector<int> >& ans) {

@@ -16,7 +16,6 @@ void sort012(int arr[], int n) {
             swap(arr[low], arr[mid]);
             low++;
             mid++;
-            mid++;
         }
         else if(arr[mid] == 1) {
             mid++;
