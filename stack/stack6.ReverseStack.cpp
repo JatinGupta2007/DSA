@@ -1,6 +1,7 @@
 #include<iostream>
 #include<stack>
 using namespace std;
+
 void insertBelow(stack<int>& myStack, int x , int count){
     //base case
     if(myStack.empty()) {

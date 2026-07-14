@@ -2,7 +2,7 @@
 //#include<stack>
 using namespace std;
 
-
+// This is not normal stack , this is made by us
 // Implementation of stack is done using arrays;
 class stack{
 

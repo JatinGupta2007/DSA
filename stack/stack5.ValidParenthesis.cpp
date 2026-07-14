@@ -14,6 +14,7 @@ public:
             return false;
         }
     }
+    
     bool isValid(string s) {
 
        stack<char> val;
