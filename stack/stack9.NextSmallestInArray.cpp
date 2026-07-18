@@ -2,6 +2,7 @@
 #include<vector>
 using namespace std;
 
+// This code stores next smallest element  in the array not its index
 vector<int> nextSmallerElement(vector<int> &arr, int n)
 {
     stack<int> s;

@@ -4,13 +4,13 @@ using namespace std;
 
 // Note - We are going to each pass and arr[i] * (nse - pse - 1) is our area for that i
 
-// OPTIMISED APPROACH (FINDINF NSE AND PSE SEPERATELY AND THEN USING FORMULA)
+// OPTIMISED APPROACH (FINDING NSE AND PSE SEPERATELY AND THEN USING FORMULA)
 class Solution {
 
 
 
 
-// CALCULATIN NSE OF a arr[i]
+// CALCULATING NSE OF a arr[i]
  vector<int> Nse(vector<int> &arr, int n)
 {
     stack<int> s;

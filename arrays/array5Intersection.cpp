@@ -53,21 +53,21 @@ int main()
 
     int i = 0;
     int j = 0;
-    while( i != arr.size() && j != brr.size()){
+    while (i < arr.size() && j < brr.size()){
 
         if(brr[j] > arr[i]){
             i++;
         }
-        else if(brr[j] == arr[i]){
-            ans.push_back(arr[i]);
-            cout<<arr[i]<<endl;
-            brr[j] = INT_MIN;
-            i++;
-            j++;
-        }
         else if(brr[j] < arr[i]){
             j++;
         }
+        else if(brr[j] == arr[i]){
+            ans.push_back(arr[i]);
+            cout<<arr[i]<<endl;
+            i++;
+            j++;
+        }
+        
     }
     return 0;
 

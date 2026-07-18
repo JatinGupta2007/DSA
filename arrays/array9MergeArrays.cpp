@@ -1,37 +1,63 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
-void printArray(int arr[], int n) {
-    for(int i=0; i<n; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
 
-void merge(int arr1[] , int n, int arr2[] , int m , int arr3[]){
+// Making a new array (taking extra space)
+// question has given nums1 (m + n) space so we don't have to make a extra array
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n){
     int i = 0;
     int j = 0;
     int count = 0;
-    while(i < n || j < m){
-        if(arr1[i]<arr2[j] && i<n){
-            arr3[count] = arr1[i];
-            i++;  
+    vector<int> nums3(m+n);
+    while(i < m && j < n){
+        if(nums1[i] < nums2[j] && i<m){
+            nums3[count] = nums1[i];
+            i++;
             count++;
         }
         else{
-            arr3[count] = arr2[j];
+            nums3[count] = nums2[j];
             j++;
             count++;
         }
     }
-}
-int main()
-{
-    int arr[3] = {1,3,5};
-    int brr[5] = {2,4,9,11,14};
-    int crr[8];
 
-    merge(arr,3,brr,5,crr);
-    printArray(crr,8);
-return 0;
+    // Copy remaining elements safely
+        while (i < m) nums3[count++] = nums1[i++];
+        while (j < n) nums3[count++] = nums2[j++];
+
+    nums1 = nums3;
 }
+};
+
+
+
+// Without extra space approach'
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int i = m - 1;       // last valid element in nums1
+        int j = n - 1;       // last element in nums2
+        int k = m + n - 1;   // last position in nums1
+
+        // Merge from the back
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k--] = nums1[i--];
+            } else {
+                nums1[k--] = nums2[j--];
+            }
+        }
+
+        // Copy remaining elements from nums2 (if any)
+        while (j >= 0) {
+            nums1[k--] = nums2[j--];
+        }
+        // No need to copy from nums1, they’re already in place
+    }
+};
+
