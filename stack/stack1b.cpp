@@ -31,10 +31,10 @@ public:
 
 // void insertAtTail(node *&tail , node *&head , int d){
 //     if(tail == NULL){
-//     node *temp = new node(d);
-//     tail = temp;
-//     head = temp;
-//     return;
+//          node *temp = new node(d);
+//          tail = temp;
+//          head = temp;
+//          return;
 //     }
 
 //     node *temp = new node(d);
