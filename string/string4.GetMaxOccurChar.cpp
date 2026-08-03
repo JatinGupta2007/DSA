@@ -1,7 +1,9 @@
 #include<iostream>
 #include<string>
+#include<unordered_map>
 using namespace std;
 
+// Optimised approach (case insensitive) (only works for alphabets)
 char GetMaxChar(string s){
     int arr[26] = {0};
     int num = 0;
@@ -27,11 +29,32 @@ char GetMaxChar(string s){
     char finalAns = ans + 'a';
     return finalAns ;
 }
+
+// Hash map approach (optimised , case sensitive , work for any char)
+char GetMaxChar2(string s){
+    unordered_map<char , int> arr;
+
+    for(int i = 0; i < s.length(); i++){
+        arr[s[i]]++;
+    }
+
+    int max = -1;
+    char ans = '\0';
+
+    for(auto p : arr){
+        if(p.second > max){
+            max = p.second;
+            ans = p.first;
+        }
+    }
+    return ans ;
+}
 int main()
 {
     string st;
+    cout<<"Enter the string: ";
     cin>>st;
-    cout<<GetMaxChar(st);
+    cout<<GetMaxChar2(st);
 
 
 return 0;

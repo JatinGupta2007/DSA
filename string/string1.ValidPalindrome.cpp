@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 #include <string>
 using namespace std;
 class Solution
@@ -30,18 +30,14 @@ public:
         int i = 0;
         int j = s.length() - 1;
 
-        for (int k = 0; k < s.length(); k++)
-        {
-            s[k] = lowerCase(s[k]);
-        }
-
-        string temp = s;
-
         while (i < j)
         {
             if (valid(s[i]) == 1 && valid(s[j]) == 1)
             {
-                swap(s[i], s[j]);
+                if (lowerCase(s[i]) != lowerCase(s[j]))
+                {
+                    return false;
+                }
                 i++;
                 j--;
             }
@@ -54,10 +50,6 @@ public:
                 j--;
             }
         }
-        if (s == temp)
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
 };
