@@ -6,6 +6,8 @@ int firstOccurence(int arr[], int size, int search)
     int min = 0;
     int max = size - 1;
     int left = 0;
+
+    
     while (min <= max)
     {
         int mid = (max + min) / 2;
