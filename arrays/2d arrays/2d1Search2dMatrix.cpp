@@ -1,5 +1,9 @@
 // DOING BINARY SEARCH ON A 2D ARRAY BY CONSIDERING IT AS A OPENED 1 D ARRAY
 
+
+#include<iostream>
+#include<vector>
+using namespace std;
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -8,10 +12,9 @@ public:
 
         int s = 0;
         int e = (row*col) - 1;
-        int mid = s + (e/2 - s/2);
 
         while(s<=e){
-            mid = s + (e/2 - s/2);
+            int mid = s + (e/2 - s/2);
             int element = matrix[mid/col][mid%col];
        
  
@@ -58,13 +61,12 @@ public:
 
 //         if(ansRow != INT_MIN){
 
-//         for(int j = 0; j < col; j++){
-//             if(matrix[ansRow][j] == target){
-//                 return true;
-//             }
-//         }
+//              for(int j = 0; j < col; j++){
+//                  if(matrix[ansRow][j] == target){
+//                  return true;
+//                  }
+//              }
 //         }
 //         return false;
-        
 //     }
 // };

@@ -1,13 +1,14 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+
 class Solution
 {
 public:
     int peakIndexInMountainArray(vector<int> &arr)
     {
-        int start = 0;
-        int end = arr.size() - 1;
+        int start = 1;
+        int end = arr.size() - 2;
 
         while (start < end)
         {

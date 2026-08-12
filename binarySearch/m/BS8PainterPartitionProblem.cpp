@@ -15,23 +15,23 @@ using namespace std;
 // Output: 11
 
 
-bool isPossible(vector<int> arr, int n, int k, int mid)
+bool isPossible(vector<int> arr, int n, int k, int area)
 {
-    int area = 0;
+    int sum = 0;
     int painterCount = 1;
 
     for (int i = 0; i < n; i++)
     {
 
-        if (area + arr[i] <= mid)
+        if (sum + arr[i] <= area)
         {
-            area = area + arr[i];
+            sum = sum + arr[i];
         }
         else
         {
             painterCount++;
-            area = arr[i];
-            if (painterCount > k || arr[i] > mid)
+            sum = arr[i];
+            if (painterCount > k || arr[i] > area)
             {
                 return false;
             }
@@ -42,27 +42,34 @@ bool isPossible(vector<int> arr, int n, int k, int mid)
 
 int allocateArea(vector<int> arr, int n, int k)
 {
-    int min = 0;
+    
     int sum = 0;
-    int ans = 0;
+    int maxNum = INT_MIN;
+
     for (int i = 0; i < n; i++)
     {
+        if(arr[i] > maxNum){
+            maxNum = arr[i];
+        }
         sum = sum + arr[i];
     }
-    int max = sum;
-    int mid = (min + max) / 2;
-    while (min <= max)
+
+    int low = maxNum;
+    int high = sum;
+    int ans = 0;
+    
+    while (low <= high)
     {
-        mid = (min + max) / 2;
+        int mid = low + (high - low) / 2;
 
         if (isPossible(arr, n, k, mid))
         {
             ans = mid;
-            max = mid - 1;
+            high = mid - 1;
         }
         else
         {
-            min = mid + 1;
+            low = mid + 1;
         }
     }
     return ans;
@@ -70,8 +77,8 @@ int allocateArea(vector<int> arr, int n, int k)
 
 int main()
 {
-    vector<int> array = {2, 1, 5, 6, 2, 3};
-    cout << allocateArea(array, array.size(), 2);
+    vector<int> array = {1,4,4};
+    cout << allocateArea(array, array.size(), 3);
 
     return 0;
 }

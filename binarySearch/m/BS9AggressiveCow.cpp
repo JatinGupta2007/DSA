@@ -19,48 +19,45 @@ using namespace std;
 // Explanation: The maximum possible minimum distance will be 2 when 2 cows are placed at 
 // positions {1, 3}. Here distance between cows is 2.
 
-bool isPossible(vector<int> arr, int n, int k, int mid)
+bool isPossible(vector<int> &arr, int n, int k, int gap)
 {
 
+    int count = 1;
+    int lastPos = arr[0];
 
-    int sum = 0;
-    int countCow = 1;
-
-    for (int i = 0; i < n; i++)
-    {
-        if(sum + arr[mid] < n){ 
-            countCow++;
-            sum = sum + arr[mid];
+    for(int i = 1; i < n; i++){
+    
+        if(arr[i] - lastPos < gap){
+            // ignore
         }
         else{
-            if(countCow < k){
-                return false;
+            lastPos = arr[i];
+            count++;
+
+            if(count >= k){
+                return true;
             }
-            break;
         }
-        }
-        return true;
+    }
+        return false;
  }
 
-int allocateStall(vector<int> arr, int n, int k)
+int allocateStall(vector<int> &arr, int n, int k)
 {
-    int min = 0;
-    int max = n-1;
+    int low = 1;
+    int high = arr[n-1] - arr[0];
     int ans = 0;
     
-    int mid = (min + max) / 2;
-    while (min <= max)
+    while (low <= high)
     {
-        mid = (min + max) / 2;
+        int mid =  low + (high - low) / 2;
 
-        if (isPossible(arr, n, k, mid))
-        {
+        if (isPossible(arr, n, k, mid)){
             ans = mid;
-            min = mid + 1;
+            low = mid + 1;
         }
-        else
-        {
-            max = mid - 1;
+        else{
+            high = mid - 1;
         }
     }
     return ans ;

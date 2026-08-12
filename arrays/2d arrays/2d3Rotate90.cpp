@@ -19,6 +19,6 @@ void rotate(vector<vector<int>>& matrix) {
     }
 }
 
-// 90° Clockwise   → Transpose + Reverse each row
-// 90° Anticlockwise → Transpose + Reverse each column
-// 180°            → Reverse each row + Reverse each column
+// 90° Clockwise       → Transpose + Reverse each row
+// 90° Anticlockwise   → Transpose + Reverse each column
+// 180°                → Reverse each row + Reverse each column

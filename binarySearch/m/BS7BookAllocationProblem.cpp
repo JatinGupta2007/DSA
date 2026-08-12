@@ -1,4 +1,5 @@
 #include <iostream>
+#include<climits>
 #include <vector>
 using namespace std;
 
@@ -12,19 +13,18 @@ using namespace std;
 // it should be alloted in  such a manner that max pages one will get should be minimum
 // book can be alloted in contious order only and (only till end this countinous order will be followed
 
-bool isPossible(vector<int> arr, int n, int m, int mid)
+bool isPossible(vector<int> &arr, int n, int m, int mid)
 {
     int studentCount = 1; // start with first student
     int pageSum = 0;
 
     for (int i = 0; i < n; i++)
     {
-        if (pageSum + arr[i] <= mid)
-        {
-            pageSum += arr[i];
+        if(pageSum + arr[i] <= mid){
+            pageSum = pageSum + arr[i];
         }
-        else
-        {
+
+        else{
             studentCount++;
             pageSum = arr[i];
             if (studentCount > m || arr[i] > mid)
@@ -36,30 +36,39 @@ bool isPossible(vector<int> arr, int n, int m, int mid)
     return true;
 }
 
-int allocateBooks(vector<int> arr, int n, int m)
+int allocateBooks(vector<int> &arr, int n, int m)
 {
-    int min = 0;
+
+    if(m > n){
+        return -1;
+    }
+
     int sum = 0;
-    for (int i = 0; i < arr.size(); i++)
-    {
+    int maxNum = INT_MIN;
+    for (int i = 0; i < arr.size(); i++){
+        if(arr[i] > maxNum){
+            maxNum = arr[i];
+        }
         sum = sum + arr[i];
     }
-    int max = sum;
-    int mid = (min + max) / 2;
+
+    int low = maxNum;
+    int high = sum;
+    
     int ans = 0;
 
-    while (min <= max)
+    while (low <= high)
     {
-        mid = (min + max) / 2;
+        int mid = low + (high - low) / 2;
 
         if (isPossible(arr, n, m, mid))
         {
             ans = mid;
-            max = mid - 1;
+            high = mid - 1;
         }
         else
         {
-            min = mid + 1;
+            low = mid + 1;
         }
     }
     return ans;
@@ -67,8 +76,8 @@ int allocateBooks(vector<int> arr, int n, int m)
 
 int main()
 {
-    vector<int> array = {10, 20, 30, 40};
-    cout << allocateBooks(array, array.size(), 2);
+    vector<int> array = {25, 46, 28, 49, 24};
+    cout << allocateBooks(array, array.size(), 4);
 
     return 0;
 }
