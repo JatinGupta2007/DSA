@@ -65,11 +65,12 @@ int allocateStall(vector<int> &arr, int n, int k)
 
 int main()
 {
+
     vector<int> array = {1,2,4,8,9};
     sort(array.begin() , array.end());
 
 
-    cout << allocateStall(array, array.size(), 3);
+    cout << allocateStall(array, array.size(), 3);   // cows should be taken from user
 
     return 0;
 }

@@ -1,6 +1,8 @@
 #include<iostream> 
 using namespace std;
 
+// We are given a number and we have to check all the digits of the number and print them in word form
+
 void sayDigit(int n, string arr[]) {
 
     //base case

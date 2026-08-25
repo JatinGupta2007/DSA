@@ -1,9 +1,13 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
 void solve(vector<string>& ans, string str, string output, int i) {
     //base case
     if(i>=str.length()) {
         ans.push_back(output);
         return ;
-        }
+    }
     
     //exclude
     solve(ans, str, output, i+1);

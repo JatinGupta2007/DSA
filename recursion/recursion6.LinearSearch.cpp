@@ -14,8 +14,8 @@ bool find(int array[] , int size, int target){
         return true;
     }
     else{
-    bool ans = find(array+1 , size - 1 , target);
-    return ans;
+        bool ans = find(array+1 , size - 1 , target);
+        return ans;
     }
 }
 int main()

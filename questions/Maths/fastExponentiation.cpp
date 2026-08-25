@@ -9,7 +9,7 @@ int main()
 
     while(b > 0){
 
-        if(b & 1) {// odd
+        if(b & 1) {// odd     (b % 2 != 0)
         result = result * a;
     }
     a = a * a;

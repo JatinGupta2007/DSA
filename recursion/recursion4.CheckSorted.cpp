@@ -14,15 +14,22 @@ bool isSorted(int array[] , int size){
         return false;
     }
     else{
-    bool ans = isSorted (array+1 , size - 1);
-    return ans;
+        bool ans = isSorted (array+1 , size - 1);
+        return ans;
     }
 }
 int main()
 {
     int arr[8] = {1,2,3,4,5,6,8,7};
     int size = 8;
-    cout<<isSorted (arr , size );;
+
+    int ans = isSorted (arr , size );
+    if(ans == true){
+        cout<<"Sorted";
+    }
+    else{
+        cout<<"Unsorted";
+    }
 
 return 0;
 }

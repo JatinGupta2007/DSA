@@ -10,7 +10,7 @@ using namespace std;
 // on right
 
 // for finding the number of elements smaller than mid element in the 2d matrix , we transversed all the rows , and applied binary
-// searhc on each row , and find the count of numbers lesser than our mid num , and return the count of total num lesser than
+// search on each row , and find the count of numbers lesser than our mid num , and return the count of total num lesser than
 // mid num across all the 2d matrix.
 class Solution{
 

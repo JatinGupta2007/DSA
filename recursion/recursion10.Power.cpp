@@ -23,7 +23,7 @@
 #include<iostream>
 using namespace std;
 
-int power(int a , int b ){
+int powerFunc(int a , int b ){
     if(b == 0){
         return 1;
     }
@@ -31,7 +31,7 @@ int power(int a , int b ){
         return a;
     }
 
-    int ans = power(a , b/2);
+    int ans = powerFunc(a , b/2);
 
     if (b%2 == 0){
         return ans*ans;   
@@ -45,7 +45,7 @@ int main()
 {
     int a = 3;
     int b = 11;
-    int ans = power(a , b );
+    int ans = powerFunc(a , b );
     cout<< ans;
     return 0;
 }

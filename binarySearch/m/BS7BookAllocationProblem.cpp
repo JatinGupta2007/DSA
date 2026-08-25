@@ -8,10 +8,10 @@ using namespace std;
 // arr contain n books and arr[i] contain number of pages in book
 // arr is in increasing order
 
-// each student should get 1 book
+// each student should get atleast 1 book
 // each book should be alloted
 // it should be alloted in  such a manner that max pages one will get should be minimum
-// book can be alloted in contious order only and (only till end this countinous order will be followed
+// book can be alloted in contious order only and (only till end this countinous order will be followed)
 
 bool isPossible(vector<int> &arr, int n, int m, int mid)
 {
@@ -39,7 +39,7 @@ bool isPossible(vector<int> &arr, int n, int m, int mid)
 int allocateBooks(vector<int> &arr, int n, int m)
 {
 
-    if(m > n){
+    if(m > n){          // students more than books 
         return -1;
     }
 
