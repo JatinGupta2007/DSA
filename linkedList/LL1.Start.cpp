@@ -28,7 +28,10 @@ public:
 };
 
 
+
+
 // INSERTING AT HEAD OF LL
+
 void insertAtHead(node *&head, int d)
 {
 
@@ -46,20 +49,20 @@ void insertAtHead(node *&head, int d)
 }
 
 
-// INSERTING AT TAIL OF LL
-void insertAtTail(node *&tail, int d)
-{
 
-    // IF NODE IS Null
-    if (tail == NULL)
-    {
-        node *temp = new node(d);
+
+// INSERTING AT TAIL OF LL
+
+void insertAtTail(node *&head, node *&tail, int d)
+{
+    node *temp = new node(d);
+
+    if (tail == NULL) {
+        head = temp;
         tail = temp;
         return;
     }
 
-
-    node *temp = new node(d);
     tail->next = temp;
     tail = temp;
 }
@@ -88,7 +91,7 @@ void insertAtPosition(node *&head, node *&tail, int position, int d)
     // Insert at end
     if (temp->next == NULL)
     {
-        insertAtTail(tail, d);
+        insertAtTail(head , tail, d);
         return;
     }
 
@@ -103,8 +106,12 @@ void insertAtPosition(node *&head, node *&tail, int position, int d)
 // DELETION OF LL
 void deleteNode(int position, node *&head)
 {
+    // If list has 0 nodes
+    if(head == NULL){
+        return;
+    }
 
-    // deleting first or start node
+    // Deleting first or start node
     if (position == 1)
     {
         node *temp = head;
@@ -115,16 +122,20 @@ void deleteNode(int position, node *&head)
     }
     else
     {
-        // deleting any middle node or last node
+        // Deleting any middle node or last node
         node *curr = head;
         node *prev = NULL;
 
         int cnt = 1;
-        while (cnt < position)
+        while (curr != NULL && cnt < position )
         {
             prev = curr;
             curr = curr->next;
             cnt++;
+        }
+
+        if(curr == NULL){
+            return;
         }
 
         prev->next = curr->next;
@@ -145,6 +156,7 @@ void print(node *head)
     }
     cout << endl;
 }
+
 
 int main()
 {

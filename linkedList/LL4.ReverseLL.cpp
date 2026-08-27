@@ -1,6 +1,9 @@
 #include<iostream>
 using namespace std;
 
+
+// REVERSAL IN SINGLY LL
+
 class node
 {
 public:
@@ -15,7 +18,7 @@ public:
 };
 
 // 1 ITERATIVE APPROACH
-void reverse(node *head){
+void reverse(node* &head){
     node *prev = NULL;
     node *curr = head;
    
@@ -49,9 +52,20 @@ void reverse(node *&head,node *&prev
 
 }
 
-int main()
-{
-    
-    
-return 0;
-}
+
+
+
+// REVERSAL IN DOUBLY LL
+
+// void reverse(node *&head){
+//     node *curr = head;
+//     node *prev = NULL;
+
+//     while(curr!=NULL){
+//         curr->prev = curr->next;
+//         curr->next = prev;
+//         prev = curr;
+//         curr = curr->prev;
+//     }
+//     head = prev;
+// }

@@ -37,14 +37,14 @@ void insertAtHead(node *&head , int d){
     // IF NODE IS NULL
     if(head == NULL){
         node *temp = new node(d);
-        head = temp;
+        head = temp;  
         return;
     }
 
 
     node *temp = new node(d);
     temp->next = head;
-    head->prev = temp;             // temp->prev = NULL  &&  head->next = NULL
+    head->prev = temp;       // temp->prev = NULL  &&  head->next = NULL
     head = temp;
 }
 
@@ -80,9 +80,14 @@ void insertAtPosition(node* &head , node* &tail , int position, int d){
         node *temp = head;
         int count = 1;
 
-        while(count < position - 1){
+        while(temp != NULL && count < position - 1){
             temp = temp->next;
             count++;
+        }
+
+        // out of bound
+        if(temp == NULL){
+            return ;
         }
         
         // Insert at end
@@ -91,6 +96,7 @@ void insertAtPosition(node* &head , node* &tail , int position, int d){
             return;
         }
 
+        // Insert ay any k position
         node *nodeToInsert = new node(d);
 
         nodeToInsert->next = temp->next;
@@ -100,39 +106,51 @@ void insertAtPosition(node* &head , node* &tail , int position, int d){
     }
 
 
-    // DELETION OF LL
-    void deleteNode(int position, node *&head)
+// DELETION OF LL
+void deleteNode(int position, node *&head)
 {
+    // Empty list case
+    if (head == NULL) {
+        return;
+    }
 
-    // deleting first or start node
-    if (position == 1)
-    {
+    // deletion at head
+    if (position == 1) {
         node *temp = head;
-        temp->next->prev = NULL;
-        head = temp->next;
+        if (temp->next == NULL) {          // single node case
+            head = NULL;
+        } 
+        else {
+            temp->next->prev = NULL;
+            head = temp->next;
+        }
         temp->next = NULL;
         delete temp;
+        return;
     }
-    else
-    {
-        // deleting any middle node or last node
-        node *curr = head;
-        node *prev = NULL;
 
-        int cnt = 1;
-        while (cnt < position)
-        {
-            prev = curr;
-            curr = curr->next;
-            cnt++;
-        }
-        
-        curr->prev = NULL;
-        prev->next = curr->next;
-        curr->next->prev = prev;
-        curr->next = NULL;
-        delete curr;
+    // deletion at any position (even tail)
+    node *curr = head;
+    node *prev = NULL;
+    int cnt = 1;
+
+    while (curr != NULL && cnt < position) {
+        prev = curr;
+        curr = curr->next;
+        cnt++;
     }
+
+    if (curr == NULL) return;              // position out of bounds
+
+    prev->next = curr->next;
+
+    if (curr->next != NULL) {               // If insertion is not at end
+        curr->next->prev = prev;
+    }
+
+    curr->next = NULL;
+    curr->prev = NULL;
+    delete curr;
 }
 
 
