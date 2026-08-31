@@ -25,6 +25,7 @@ class node{
 
 
 // MAP METHOD
+// Marking all the nodes we have visited , if we again visit the marked node , yes loop is present
 
 bool detectLoop(node *head){
 
@@ -47,7 +48,8 @@ bool detectLoop(node *head){
 }
 
 
-// FLOYED'S CYCLE DETECTION METHOD
+// FLOYED'S CYCLE DETECTION METHOD (tortoise and hare method)
+// Slow and fast pointer
 bool detectLoop1(node *head){
 
     //empty list
@@ -59,11 +61,8 @@ bool detectLoop1(node *head){
     node *fast = head;
     node *slow = head;
 
-    while(fast != NULL){
-        fast = fast->next;
-        if(fast != NULL){
-            fast = fast->next;
-        }
+    while(fast != NULL && fast->next != NULL){
+        fast = fast->next->next;
         slow = slow->next;
 
         if(fast == slow){

@@ -23,6 +23,7 @@ class node{
     }
 };
 
+// Just checking we again reach the head (optimised soln)
 bool isCircular(node* head){
 
     if(head == NULL){
@@ -39,9 +40,11 @@ bool isCircular(node* head){
         return true;
 }
 
+// Marking all the nodes we have visited , if we again visit the marked node , yes circular
 
+// Not optimised
 bool isCircular1(node* head){
-    if(head == NULL) return true;   // empty list is circular by definition
+    if(head == NULL) return true;     // empty list is circular by definition
 
     map<node*, bool> visited;
     node *temp = head;
@@ -49,7 +52,7 @@ bool isCircular1(node* head){
     while(temp != NULL){
         if(visited[temp] == true){
             // we've seen this node before — cycle detected
-            return (temp == head);   // circular only if cycle returns to head
+            return true;   // circular only if cycle returns to head
         }
         visited[temp] = true;
         temp = temp->next;

@@ -29,7 +29,7 @@ node *getMid(node *head){
 
     node *slow = head;
     node *fast = head;
-    while(fast != NULL && fast->next != NULL){
+    while(fast->next != NULL && fast->next->next != NULL){
         fast = fast->next->next;
         slow = slow->next;
     }
@@ -52,10 +52,13 @@ node *reverse(node *head){
 
 bool isPalindrome(node *head){
 
+
     if(head == NULL || head->next == NULL){
         return true;
     } 
-    bool result;
+
+    bool result = true;
+
     // Step 1 -> Find middle
     node *middle = getMid(head);
 
@@ -78,12 +81,11 @@ bool isPalindrome(node *head){
     // Step 4 -> Again reversing second half to get original list(optional)
     temp = middle->next;
     middle->next = reverse(temp);
-    return true;
+    return result;
 }
 
 
-
-// COPY LIST IN AN ARRAY AND THEN JUST DO PALINDROME CHECK ON THE ARRAY;
+// BEKAAR TERIKKA - COPY LIST IN AN ARRAY AND THEN JUST DO PALINDROME CHECK ON THE ARRAY;
 bool isPalindrome2(node *head){
     vector<int> sol;
     node *temp = head;

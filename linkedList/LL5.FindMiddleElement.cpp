@@ -36,17 +36,14 @@ node *findMiddle(node *head) {
 
 
 
-    // METHOD 2   SMART BRAIN 
+    // METHOD 2   Tortoise and the hare
     node *findMiddle(node *head) {
 
     node *fast = head->next;
     node *slow = head;
 
-    while(fast!=NULL){
-        fast = fast->next;
-        if(fast != NULL){
-            fast = fast->next;
-        }
+    while(fast != NULL && fast->next != NULL){
+        fast = fast->next->next;
         slow = slow->next;
     }
     return slow;

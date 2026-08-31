@@ -20,70 +20,55 @@ public:
 class Solution
 {
 
-private:
-    void insertAtTail(Node *&head, Node *&tail, int d)
-    {
-        if (tail == NULL)
-        {
-            Node *temp = new Node(d);
-            tail = temp;
-            head = temp;
-            return;
-        }
-
-        Node *temp = new Node(d);
-        tail->next = temp;
-        tail = temp;
-    }
-
 public:
     // USING MAP
 
     Node *cloneLinkedList(Node *head)
     {
 
-        // Step 1 -> Make a clone linked list
+        // Step 1 -> Make a dummy node
 
-        Node *cloneHead = NULL;
-        Node *cloneTail = NULL;
+        Node *dummy = new Node(-1);
 
-        // Step 2 -> Copying the original LL in clone LL
+        // Step 2 -> Copying the original LL in clone LL and marking a relation betwwn the 
+        //           corresponding nodes using a hashmap
+
         Node *temp = head;
-
-        while (temp != NULL)
-        {
-
-            insertAtTail(cloneHead, cloneTail, temp->data);
-            temp = temp->next;
-        }
-
-        // Step 3 -> Making a map to make a relation b/w old
-        //           and new corresponding nodes
+        Node *temp2 = dummy;
 
         unordered_map<Node *, Node *> oldToNew;
-        temp = head;
-        Node *temp2 = cloneHead;
+
         while (temp != NULL)
         {
-            oldToNew[temp] = temp2;
-            temp = temp->next;
+            Node *newNode = new Node(temp->data);
+            temp2->next = newNode;
+            oldToNew[temp] = newNode;
+
             temp2 = temp2->next;
+            temp = temp->next;
         }
 
-        // Step 4 -> Clone ke randoms ko original ke random ke
-        //           corresponding mapped clone ke element ko point karvana
+        // Step 2 -> Clone ke next and randoms ko original ke next and randoms le according link karna using map
+
         temp = head;
-        temp2 = cloneHead;
+        temp2 = dummy->next;
 
         while (temp != NULL)
         {
+            temp2->next = oldToNew[temp->next];
             temp2->random = oldToNew[temp->random];
             temp = temp->next;
             temp2 = temp2->next;
         }
 
-        return cloneHead;
+        temp2 = dummy->next;
+        delete dummy;
+        return temp2;
     }
+
+
+
+
 
     // WITHOUT ANY EXTRA SPACE
     Node *cloneLinkedList2(Node *head)
@@ -158,7 +143,3 @@ public:
     }
 };
 
-int main()
-{
-    return 0;
-}
